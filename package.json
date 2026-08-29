@@ -5,11 +5,15 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "format": "biome format --write .",
+    "check": "biome check --write .",
+    "check-types": "turbo run check-types",
+    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml watch",
+    "docker:down": "docker compose down",
+    "docker:prod": "docker compose up --build"
   },
   "devDependencies": {
-    "prettier": "3.9.6",
+    "@biomejs/biome": "2.5.11",
     "turbo": "^2.10.12",
     "typescript": "7.0.2"
   },
