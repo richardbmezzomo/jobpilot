@@ -1,0 +1,31 @@
+# Override de desenvolvimento. Use junto com o docker-compose.yml:
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml watch
+services:
+  api:
+    build:
+      target: dev
+    develop:
+      watch:
+        - action: sync
+          path: ./apps/api/src
+          target: /app/apps/api/src
+        - action: rebuild
+          path: ./apps/api/package.json
+        - action: rebuild
+          path: ./bun.lock
+
+  web:
+    build:
+      target: dev
+    develop:
+      watch:
+        - action: sync
+          path: ./apps/web/app
+          target: /app/apps/web/app
+        - action: sync
+          path: ./apps/web/public
+          target: /app/apps/web/public
+        - action: rebuild
+          path: ./apps/web/package.json
+        - action: rebuild
+          path: ./bun.lock
